@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mediaserver">
+<head>
+  <meta charset="utf-8">
+  <title>Media Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/public/src/css/styles.css">
+  <% if (env === 'production') { %>
+    <link rel="stylesheet" type="text/css" href="/public/media-server.css?<%= cssModifiedTime %>" />
+    <script type="text/javascript" src="/public/media-server.js?<%= jsModifiedTime %>"></script>
+  <% } else { %>
+    <% for (file in resources.vendorcss) { %>
+      <link rel="stylesheet" type="text/css" href="/<%= resources.vendorcss[file] %>" />
+    <% } for (file in resources.css) { %>
+      <link rel="stylesheet" type="text/css" href="/<%= resources.css[file] %>" />
+    <% } %>
+    <% for (file in resources.vendorjs) { %>
+      <script type="text/javascript" src="/<%= resources.vendorjs[file] %>"></script>
+    <% } for (file in resources.js) { %>
+      <script type="text/javascript" src="/<%= resources.js[file] %>"></script>
+    <% } %>
+  <% } %>
+  <script type="text/javascript">
+    <% if (env) { %>window.env = '<%- env %>';<% } %>
+  </script>
+</head>
+<body ng-cloak ng-class="ng-cloak" id="{{ bodyClass }}">
+  <div ng-view></div>
+  <% if (env === 'development') { %>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  <% } %>
+</body>
+</html>

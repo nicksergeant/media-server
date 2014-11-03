@@ -1,0 +1,29 @@
+{
+  "title": "Media Server",
+  "author": "Media Server",
+  "name": "media-server",
+  "homepage": "http://media.local/",
+  "description": "A very simple local media server.",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nicksergeant/media-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nicksergeant/media-server/issues"
+  },
+  "licenses": [],
+  "engines": {
+    "node": ">= 0.8.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "compression": "^1.2.0",
+    "ejs": "^1.0.0",
+    "errorhandler": "^1.2.2",
+    "express": "^4.10.1",
+    "jshint": "^2.5.8",
+    "morgan": "^1.4.1",
+    "rethinkdb": "^1.15.0-0"
+  }
+}

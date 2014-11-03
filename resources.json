@@ -1,0 +1,17 @@
+{
+  "css": [
+    "public/src/css/styles.css"
+  ],
+  "js": [
+    "public/src/app/app.js",
+    "public/src/app/pages/init.js",
+    "public/src/app/pages/routes.js"
+  ],
+  "vendorcss": [
+  ],
+  "vendorjs": [
+    "public/vendor/jquery/dist/jquery.min.js",
+    "public/vendor/angular/angular.min.js",
+    "public/vendor/angular-route/angular-route.min.js"
+  ]
+}

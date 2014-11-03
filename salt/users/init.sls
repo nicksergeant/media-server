@@ -17,6 +17,8 @@ wheel-group:
       {% for group in user.groups %}
       - group: {{ group }}
       {% endfor %}
+      - pkg: fish
+    - shell: /usr/bin/fish
   ssh_auth.present:
     - user: {{ user.name }}
     {% if user.name != 'vagrant' and user.name != 'deploy' %}

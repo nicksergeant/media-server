@@ -17,6 +17,7 @@
 
 # Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
 -A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 
 
 #  Allows SSH connections

@@ -5,6 +5,7 @@ base:
     - ssh
     - users
     - fish
+    - usbmount
     - nginx
     - rethinkdb
     - nodejs

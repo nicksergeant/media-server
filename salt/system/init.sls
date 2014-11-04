@@ -13,6 +13,8 @@ system:
     - pkgs:
       - cmake
       - curl
+      - exfat-utils
+      - exfat-fuse
       - usbmount
       - git
       - htop

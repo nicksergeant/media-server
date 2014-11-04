@@ -6,8 +6,8 @@ js_files := $(shell node scripts/make/js-files.js)
 js_src_files := $(shell find public/src server server.js scripts -name '*.js')
 
 pm = /var/www/.virtualenvs/snipt/bin/python /var/www/snipt/manage.py
-ssh-server-deploy = ssh deploy@media.local -p 55555
-ssh-server-root = ssh root@media.local
+ssh-server-deploy = ssh deploy@media.sergeant.co -p 55555
+ssh-server-root = ssh root@media.sergeant.co
 ssh-vagrant = ssh vagrant@localhost -p 2222 -i ~/.vagrant.d/insecure_private_key
 
 compile: js css
@@ -19,10 +19,10 @@ db:
 	@node scripts/make/init-database.js
 
 deploy: jshint
-	@ssh deploy@media.local -p 55555 'cd /var/www/media-server; git pull'
-	@ssh deploy@media.local -p 55555 'cd /var/www/media-server; make install'
-	@ssh deploy@media.local -p 55555 'cd /var/www/media-server; make compile'
-	@ssh deploy@media.local -p 55555 'sudo supervisorctl restart media-server'
+	@ssh deploy@media.sergeant.co -p 55555 'cd /var/www/media-server; git pull'
+	@ssh deploy@media.sergeant.co -p 55555 'cd /var/www/media-server; make install'
+	@ssh deploy@media.sergeant.co -p 55555 'cd /var/www/media-server; make compile'
+	@ssh deploy@media.sergeant.co -p 55555 'sudo supervisorctl restart media-server'
 
 install:
 	@npm install
@@ -39,8 +39,8 @@ run: install jshint
 	@vagrant ssh -c 'sudo supervisorctl restart media-server && sudo supervisorctl tail -f media-server stdout'
 
 salt-server:
-	@scp -q -P 55555 -r ./salt/ deploy@media.local:salt
-	@scp -q -P 55555 -r ./pillar/ deploy@media.local:pillar
+	@scp -q -P 55555 -r ./salt/ deploy@media.sergeant.co:salt
+	@scp -q -P 55555 -r ./pillar/ deploy@media.sergeant.co:pillar
 	@$(ssh-server-deploy) 'sudo rm -rf /srv'
 	@$(ssh-server-deploy) 'sudo mkdir /srv'
 	@$(ssh-server-deploy) 'sudo mv ~/salt /srv/salt'
@@ -63,14 +63,14 @@ server:
 	@$(ssh-server-root) 'sudo add-apt-repository -y ppa:saltstack/salt'
 	@$(ssh-server-root) 'sudo apt-get update'
 	@$(ssh-server-root) 'sudo apt-get install -y salt-minion'
-	@scp -q -r ./salt/ root@media.local:salt
-	@scp -q -r ./pillar/ root@media.local:pillar
+	@scp -q -r ./salt/ root@media.sergeant.co:salt
+	@scp -q -r ./pillar/ root@media.sergeant.co:pillar
 	@$(ssh-server-root) 'sudo rm -rf /srv'
 	@$(ssh-server-root) 'sudo mkdir /srv'
 	@$(ssh-server-root) 'sudo mv ~/salt /srv/salt'
 	@$(ssh-server-root) 'sudo mv ~/pillar /srv/pillar'
 	@$(ssh-server-root) 'sudo salt-call --local state.highstate'
-	@ssh deploy@media.local -p 55555 'cd /var/www/media-server; make db'
+	@ssh deploy@media.sergeant.co -p 55555 'cd /var/www/media-server; make db'
 
 vagrant:
 	@vagrant up --provider=vmware_fusion

@@ -1,5 +1,5 @@
 env_name: production
-hostname: media.local
+hostname: media.sergeant.co
 deploy_user: deploy
 
 users:

@@ -25,7 +25,14 @@
 </head>
 <body ng-cloak ng-class="ng-cloak" id="{{ bodyClass }}">
   <div ng-view></div>
-  <a target="_self" href="/media/TV Shows/T-25/Stretch.mp4">Stretch.mp4</a>
+  <video src="/media/TV Shows/T-25/Stretch.mp4" height="300" width="400" x-webkit-airplay="allow">
+    <embed airplay=”allow”
+      src="/media/TV Shows/T-25/Stretch.mp4"
+      width=400
+      height=300
+      mime-type="video/quicktime">
+    </embed>
+  </video>
   <% if (env === 'development') { %>
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   <% } %>

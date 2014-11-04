@@ -24,7 +24,6 @@ angular.module('pages')
             $scope.showCounts[item.show] + 1 : 1;
         });
 
-        console.log($scope.showCounts);
       });
     }
   });

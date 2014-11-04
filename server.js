@@ -8,6 +8,7 @@ var ejs = require('ejs');
 var errorhandler = require('errorhandler');
 var express = require('express');
 var fs = require('fs');
+var items  = require('./server/items');
 var morgan  = require('morgan');
 var r = require('rethinkdb');
 var resources = JSON.parse(fs.readFileSync(__dirname + '/resources.json'));
@@ -36,6 +37,9 @@ process.on('uncaughtException', function (error) {
 if (process.env.NODE_ENV === 'production') {
   app.use(errorhandler({ dumpExceptions: true, showStack: true }));
 }
+
+// Items API.
+app.get('/api/items', items.routes.list());
 
 // Application route.
 app.get('/*', function(req, res) {

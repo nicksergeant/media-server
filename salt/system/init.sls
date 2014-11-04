@@ -13,6 +13,7 @@ system:
     - pkgs:
       - cmake
       - curl
+      - usbmount
       - git
       - htop
       - mercurial

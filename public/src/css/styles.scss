@@ -35,5 +35,23 @@ label {
 
 // Base
 body {
+  color: #555555;
   font-family: 'Open Sans';
+}
+a {
+  color: #555555 !important;
+}
+
+div.ui.list {
+  padding: 0 .5em 2em .5em;
+
+  a {
+    color: black;
+    padding: .5em !important;
+  }
+}
+div.loading {
+  box-shadow: none !important;
+  padding: 4em 0 !important;
+  -webkit-box-shadow: none !important;
 }

@@ -22,6 +22,7 @@
     "ejs": "^1.0.0",
     "errorhandler": "^1.2.2",
     "express": "^4.10.1",
+    "glob": "^4.0.6",
     "jshint": "^2.5.8",
     "morgan": "^1.4.1",
     "rethinkdb": "^1.15.0-0"

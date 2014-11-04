@@ -7,27 +7,37 @@
     </div>
   </div>
   <div ng-show="showAllShows">
-    <a class="item" ng-click="selectedShow = null; showAllShows = false;">
+    <a class="item"
+      ng-class="{ 'active teal': selectedShow === '' }"
+      ng-click="selectedShow = ''; showAllShows = false;">
       All
-      <div class="ui label">53</div>
+      <div class="ui label">{{ items.length }}</div>
     </a>
-    <a class="item" ng-click="selectedShow = 'T-25'; showAllShows = false;">
-      T-25
-      <div class="ui label">1</div>
-    </a>
-    <a class="item" ng-click="selectedShow = 'Hip Hop Abs'; showAllShows = false;">
-      Hip Hop Abs
-      <div class="ui label">51</div>
-    </a>
-    <a class="item" ng-click="selectedShow = 'PiYo'; showAllShows = false;">
-      PiYo
-      <div class="ui label">1</div>
+    <a ng-repeat="show in shows|orderBy:'toString()'"
+      class="item"
+      ng-class="{ 'active teal': $parent.selectedShow === show }"
+      ng-click="$parent.selectedShow = show; $parent.showAllShows = false;">
+      {{ show }}
+      <div class="ui label">{{ showCounts[show] }}</div>
     </a>
   </div>
   <div class="item">
     <div class="ui fluid icon input">
-      <input type="text" placeholder="Search {{ selectedShow || 'all' }}...">
+      <input type="text" ng-model="query" placeholder="Search {{ selectedShow || 'all' }}...">
       <i class="search icon"></i>
     </div>
   </div>
+</div>
+<div class="ui segment loading" ng-show="!items.length">
+  <div class="ui active inverted dimmer">
+    <div class="ui text loader">Loading</div>
+  </div>
+</div>
+<div class="ui divided list" ng-show="items.length">
+  <a target="_self" ng-repeat="item in items|filter:{ show: selectedShow }|filter:query|orderBy:'name'" href="{{ item.url }}" class="item">
+    <div class="content">
+      <div class="header">{{ item.name }}</div>
+      <span>{{ item.show }}<span ng-show="item.season"> - {{ item.season }}</span></span>
+    </div>
+  </a>
 </div>

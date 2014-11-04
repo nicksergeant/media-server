@@ -13,9 +13,7 @@ system:
     - pkgs:
       - cmake
       - curl
-      - exfat-utils
-      - exfat-fuse
-      - usbmount
+      - hfsprogs
       - git
       - htop
       - mercurial

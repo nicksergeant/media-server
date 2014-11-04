@@ -8,10 +8,12 @@
     "public/src/app/pages/routes.js"
   ],
   "vendorcss": [
+    "public/vendor/semantic-ui/build/packaged/css/semantic.min.css"
   ],
   "vendorjs": [
     "public/vendor/jquery/dist/jquery.min.js",
     "public/vendor/angular/angular.min.js",
-    "public/vendor/angular-route/angular-route.min.js"
+    "public/vendor/angular-route/angular-route.min.js",
+    "public/vendor/fastclick/lib/fastclick.js"
   ]
 }

@@ -14,5 +14,14 @@ mediaserver.config(['$locationProvider', '$routeProvider', function($locationPro
     templateUrl: '/public/src/app/errors/404.html'
   });
 }]);
+mediaserver.directive('ngApp', ['$window', function($window) {
+  return {
+    link: function(scope, element, attrs) {
+      $window.addEventListener('load', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  };
+}]);
 
 }(window));

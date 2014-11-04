@@ -1,3 +1,33 @@
-<div id="home">
-  Home
+<div class="ui fluid vertical menu">
+  <div class="item">
+    <div ng-click="showAllShows = !showAllShows" class="ui blue labeled icon top right pointing fluid dropdown button">
+      <i ng-show="!showAllShows" class="triangle down icon"></i>
+      <i ng-show="showAllShows" class="triangle up icon"></i>
+      <span class="text">{{ selectedShow || 'Select show...' }}</span>
+    </div>
+  </div>
+  <div ng-show="showAllShows">
+    <a class="item" ng-click="selectedShow = null; showAllShows = false;">
+      All
+      <div class="ui label">53</div>
+    </a>
+    <a class="item" ng-click="selectedShow = 'T-25'; showAllShows = false;">
+      T-25
+      <div class="ui label">1</div>
+    </a>
+    <a class="item" ng-click="selectedShow = 'Hip Hop Abs'; showAllShows = false;">
+      Hip Hop Abs
+      <div class="ui label">51</div>
+    </a>
+    <a class="item" ng-click="selectedShow = 'PiYo'; showAllShows = false;">
+      PiYo
+      <div class="ui label">1</div>
+    </a>
+  </div>
+  <div class="item">
+    <div class="ui fluid icon input">
+      <input type="text" placeholder="Search {{ selectedShow || 'all' }}...">
+      <i class="search icon"></i>
+    </div>
+  </div>
 </div>

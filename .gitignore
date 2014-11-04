@@ -1,4 +1,5 @@
 .htpasswd
 .vagrant
 
+media
 node_modules

@@ -59,7 +59,7 @@ media-server-site:
     - group: deploy
     - mode: 755
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras
       - group: deploy
 
 enable-media-server-site:
@@ -68,8 +68,8 @@ enable-media-server-site:
     - target: /etc/nginx/sites-available/media-server
     - force: false
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras
   cmd.run:
     - name: service nginx restart
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras

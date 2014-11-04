@@ -37,7 +37,7 @@ rethinkdb-site:
     - group: deploy
     - mode: 755
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras
       - group: deploy
 
 enable-rethinkdb-site:
@@ -46,8 +46,8 @@ enable-rethinkdb-site:
     - target: /etc/nginx/sites-available/rethinkdb
     - force: false
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras
   cmd.run:
     - name: service nginx restart
     - require:
-      - pkg: nginx
+      - pkg: nginx-extras

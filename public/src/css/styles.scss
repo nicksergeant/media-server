@@ -42,6 +42,18 @@ a {
   color: #555555 !important;
 }
 
+div.ui.menu {
+  a {
+    &:hover {
+      background: white !important;
+    }
+    &.active {
+      &:hover {
+        background: #FCFCFC !important;
+      }
+    }
+  }
+}
 div.ui.list {
   padding: 0 .5em 2em .5em;
 

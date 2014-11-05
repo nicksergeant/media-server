@@ -3,6 +3,8 @@ media-server
 
 A very simple local media server.
 
+![http://i.imgur.com/sTrPclA.gif](http://i.imgur.com/sTrPclA.gif)
+
 # Running locally via Vagrant
 
 1. Clone the repo.

@@ -9,11 +9,13 @@ angular.module('pages')
     controller: function($http, $scope, $window) {
       $scope.$parent.bodyClass = 'home';
 
+      $scope.showAllShows = false;
       $scope.selectedShow = '';
       $scope.showCounts = {};
       $scope.shows = [];
 
       $scope.selectShow = function(show) {
+        $scope.showAllShows = false;
         $scope.selectedShow = show;
         $window.scrollTo(0, 0);
       };

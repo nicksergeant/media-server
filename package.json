@@ -17,6 +17,7 @@
     "node": ">= 0.8.4"
   },
   "dependencies": {
+    "basic-auth": "^1.0.0",
     "body-parser": "^1.9.2",
     "compression": "^1.2.0",
     "ejs": "^1.0.0",

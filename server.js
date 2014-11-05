@@ -1,6 +1,7 @@
 'use strict';
 
 // Modules.
+var auth = require('basic-auth');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var db = require('./server/db');
@@ -37,6 +38,19 @@ process.on('uncaughtException', function (error) {
 if (process.env.NODE_ENV === 'production') {
   app.use(errorhandler({ dumpExceptions: true, showStack: true }));
 }
+
+// Simple basic auth.
+app.use(function(req, res, next) {
+  var user = auth(req);
+  var password = fs.readFileSync(__dirname + '/.password').toString().trim();
+  if (user === undefined || user.name !== 'media' || user.pass !== password.toString()) {
+    res.statusCode = 401;
+    res.setHeader('WWW-Authenticate', 'Basic realm="Media"');
+    res.end('Unauthorized');
+  } else {
+    next();
+  }
+});
 
 // Items API.
 app.get('/api/items', items.routes.list());

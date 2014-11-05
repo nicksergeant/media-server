@@ -6,12 +6,17 @@ angular.module('pages')
   $routeProvider.when('/', {
     title: 'Home',
     templateUrl: '/public/src/app/pages/home.html',
-    controller: function($http, $scope) {
+    controller: function($http, $scope, $window) {
       $scope.$parent.bodyClass = 'home';
 
       $scope.selectedShow = '';
       $scope.showCounts = {};
       $scope.shows = [];
+
+      $scope.selectShow = function(show) {
+        $scope.selectedShow = show;
+        $window.scrollTo(0, 0);
+      };
 
       $http.get('/api/items').success(function(data) {
         $scope.items = data;

@@ -1,3 +1,4 @@
+.allowed-ips
 .htpasswd
 .password
 .vagrant

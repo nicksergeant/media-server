@@ -41,8 +41,23 @@ if (process.env.NODE_ENV === 'production') {
 
 // Simple basic auth.
 app.use(function(req, res, next) {
-  var user = auth(req);
+
+  var allowedIPs = fs.readFileSync(__dirname + '/.allowed-ips').toString().trim().split('\n');
   var password = fs.readFileSync(__dirname + '/.password').toString().trim();
+  var user = auth(req);
+
+  var allowedIP = false;
+  allowedIPs.some(function(ip) {
+    if (req.headers['x-real-ip'].match(ip)) {
+      allowedIP = true;
+      return true;
+    }
+  });
+
+  if (allowedIP) {
+    return next();
+  }
+
   if (user === undefined || user.name !== 'media' || user.pass !== password.toString()) {
     res.statusCode = 401;
     res.setHeader('WWW-Authenticate', 'Basic realm="Media"');

@@ -6,11 +6,13 @@ angular.module('pages')
   $routeProvider.when('/', {
     title: 'Home',
     templateUrl: '/public/src/app/pages/home.html',
-    controller: function($http, $scope, $window) {
+    reloadOnSearch: false,
+    controller: function($http, $location, $scope, $window) {
       $scope.$parent.bodyClass = 'home';
 
+      $scope.query = $location.search().q || '';
       $scope.showAllShows = false;
-      $scope.selectedShow = '';
+      $scope.selectedShow = $location.search().show || '';
       $scope.showCounts = {};
       $scope.shows = [];
 
@@ -18,7 +20,12 @@ angular.module('pages')
         $scope.showAllShows = false;
         $scope.selectedShow = show;
         $window.scrollTo(0, 0);
+        $location.search('show', show || null);
       };
+
+      $scope.$watch('query', function(query) {
+        $location.search('q', query || null);
+      });
 
       $http.get('/api/items').success(function(data) {
         $scope.items = data;

@@ -19,6 +19,7 @@
 -A INPUT -p tcp --dport 80 -j ACCEPT
 -A INPUT -p udp -m udp --dport 5353 -j ACCEPT
 -A OUTPUT -p udp -m udp --dport 5353 -j ACCEPT
+-A INPUT -p tcp --dport 32400 -j ACCEPT
 
 
 #  Allows SSH connections
